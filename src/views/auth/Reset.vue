@@ -3,36 +3,25 @@
   <b-container fluid class="hmm">
     <b-col cols="12">
       <div class="login">
-        <h1 class="title">Hello.</h1>
-        <h1 class="title">Welcome Back</h1>
+        <h1 class="title">Reset Password</h1>
         <form>
-          <label for="username">EMAIL</label>
+          <label for="password">PASSWORD</label>
           <input
             v-focus
             type="text"
             class="form"
-            id="username"
-            placeholder="Enter email"
+            id="password"
+            placeholder="Enter new password"
           />
-          <label for="password">PASSWORD</label>
+          <label for="password-confirm">CONFIRM</label>
           <input
             type="text"
             class="form"
-            id="password"
-            placeholder="Enter Password"
+            id="password-confirm"
+            placeholder="Confirm password"
           />
         </form>
-        <li>
-          <router-link tag="li" to="/forgot">
-            <p class="forgot">Forgot Password?</p>
-          </router-link>
-        </li>
-        <button class="btn-login">LOGIN</button>
-        <li>
-          <router-link tag="li" to="/register">
-            <p class="create">Create Account</p>
-          </router-link>
-        </li>
+        <button class="btn-login">SUBMIT</button>
       </div>
     </b-col>
   </b-container>
@@ -40,7 +29,6 @@
 
 <script>
 export default {
-  name: 'Login',
   data() {
     return {}
   },
@@ -64,9 +52,9 @@ export default {
   background-repeat: no-repeat;
 }
 .login {
-  padding: 70px;
+  padding: 100px;
   margin: auto;
-  width: 40%;
+  width: 45%;
 }
 
 label {
@@ -74,6 +62,10 @@ label {
   margin-top: 50px;
   color: rgb(109, 109, 109);
   letter-spacing: 1.2px;
+}
+
+.form:focus {
+  outline: none;
 }
 
 .form {
@@ -89,10 +81,6 @@ label {
   padding-bottom: 5px;
 }
 
-.form:focus {
-  outline: none;
-}
-
 .form::placeholder {
   color: #eee;
   opacity: 1;
@@ -103,9 +91,6 @@ label {
   color: rgb(109, 109, 109);
   margin-top: 10px;
   font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  list-style: none;
 }
 
 .btn-login {
@@ -126,32 +111,26 @@ label {
   outline: none;
 }
 
-li {
-  list-style: none;
-}
-
 .create {
   text-align: center;
   color: rgb(109, 109, 109);
   margin-top: 25px;
   font-size: 16px;
-  text-decoration: none;
-  cursor: pointer;
-  list-style: none;
 }
 
 @media (max-width: 700px) {
   .hmm {
-    height: 567px;
+    height: 495px;
   }
   .login {
-    padding-top: 100px;
+    padding-top: 120px;
     margin: auto;
     width: 100%;
   }
 
   .title {
-    font-size: 20px;
+    text-align: left;
+    font-size: 18px;
   }
 
   label {

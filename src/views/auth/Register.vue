@@ -6,14 +6,17 @@
         <form>
           <label for="email">EMAIL</label>
           <input
+            v-focus
             type="email"
             class="form"
+            v-model="form.user_email"
             id="email"
             placeholder="Enter email"
           />
           <label for="username">USERNAME</label>
           <input
             type="text"
+            v-model="form.user_name"
             class="form"
             id="username"
             placeholder="Enter name"
@@ -22,6 +25,7 @@
           <input
             type="text"
             class="form"
+            v-model="form.user_phone"
             id="phone"
             placeholder="Enter phone (optional)"
           />
@@ -29,6 +33,7 @@
           <input
             type="password"
             class="form"
+            v-model="form.user_password"
             id="password"
             placeholder="Enter Password"
           />
@@ -36,29 +41,42 @@
           <input
             type="password"
             class="form"
+            v-model="form.confirm_password"
             id="password-confirm"
             placeholder="Confirm Password"
           />
         </form>
-        <button class="btn-login">SIGN UP</button>
-        <p class="create">Already have an account?</p>
+        <button class="btn-login" @click.prevent="submit">SIGN UP</button>
+        <li>
+          <router-link tag="li" to="/login">
+            <p class="create">Already have an account?</p>
+          </router-link>
+        </li>
       </div>
     </b-col>
   </b-container>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  // name: 'Login',
-  // directives: {
-  //   focus: {
-  //     // directive definition
-  //     inserted: function (el) {
-  //       el.focus()
-  //     },
-  //   },
-  // },
-  // data: {},
+  data() {
+    return {
+      form: {
+        user_name: '',
+        user_email: '',
+        user_phone: '',
+        user_password: '',
+        confirm_password: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['registerUser']),
+    submit() {
+      this.registerUser(this.form)
+    }
+  }
 }
 </script>
 
@@ -109,6 +127,10 @@ label {
   opacity: 1;
 }
 
+.form:focus {
+  outline: none;
+}
+
 .forgot {
   text-align: right;
   color: rgb(109, 109, 109);
@@ -134,11 +156,17 @@ label {
   outline: none;
 }
 
+li {
+  list-style: none;
+}
 .create {
   text-align: center;
   color: rgb(109, 109, 109);
   margin-top: 25px;
   font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
 }
 
 @media (max-width: 700px) {
