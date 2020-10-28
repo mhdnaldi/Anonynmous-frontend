@@ -9,14 +9,16 @@
           <label for="username">EMAIL</label>
           <input
             v-focus
-            type="text"
+            type="email"
+            v-model="form.user_email"
             class="form"
             id="username"
             placeholder="Enter email"
           />
           <label for="password">PASSWORD</label>
           <input
-            type="text"
+            type="password"
+            v-model="form.user_password"
             class="form"
             id="password"
             placeholder="Enter Password"
@@ -27,7 +29,7 @@
             <p class="forgot">Forgot Password?</p>
           </router-link>
         </li>
-        <button class="btn-login">LOGIN</button>
+        <button class="btn-login" @click="submit">LOGIN</button>
         <li>
           <router-link tag="li" to="/register">
             <p class="create">Create Account</p>
@@ -39,16 +41,50 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Login',
   data() {
-    return {}
+    return {
+      form: {
+        user_email: '',
+        user_password: ''
+      }
+    }
   },
-  methods: {}
+  methods: {
+    ...mapActions(['loginUser']),
+    submit() {
+      this.loginUser(this.form)
+        .then((res) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Noicee',
+            text: res,
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Oops..',
+            text: err,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~@sweetalert2/theme-dark/dark.min.css';
+
 .title {
   text-align: left;
   color: #eee;
@@ -142,10 +178,10 @@ li {
 
 @media (max-width: 700px) {
   .hmm {
-    height: 567px;
+    height: 655px;
   }
   .login {
-    padding-top: 100px;
+    padding-top: 150px;
     margin: auto;
     width: 100%;
   }

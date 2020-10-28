@@ -75,12 +75,34 @@ export default {
     ...mapActions(['registerUser']),
     submit() {
       this.registerUser(this.form)
+        .then((res) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Noicee',
+            text: res,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+        .catch((err) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Oops..',
+            text: err,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~@sweetalert2/theme-dark/dark.min.css';
+
 .hmm {
   background-image: url(../../assets/background2.png);
   width: 100%;
