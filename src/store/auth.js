@@ -33,8 +33,8 @@ export default {
           .post(`${process.env.VUE_APP_URL}auth/login`, payload)
           .then(res => {
             context.commit('setUser', res.data.data)
-            resolve(res.data.msg)
             localStorage.setItem('token', res.data.data.token) // SET TOKEN
+            resolve(res.data.msg)
           })
           .catch(err => {
             reject(err.response.data.msg)
@@ -44,7 +44,7 @@ export default {
     logout(context, payload) {
       localStorage.removeItem('token') // REMOVE TOKEN
       context.commit('delUser')
-      window.sessionStorage.clear() // CLEAR SESSION STORAGE
+      // window.sessionStorage.clear() // CLEAR SESSION STORAGE
       router.push('/login')
     },
     inteceptorRequest(context) {
@@ -84,6 +84,30 @@ export default {
           return Promise.reject(error)
         }
       )
+    },
+    forgot(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${process.env.VUE_APP_URL}auth/forgot-password`, payload)
+          .then(res => {
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response.data.msg)
+          })
+      })
+    },
+    reset(content, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(`${process.env.VUE_APP_URL}auth/reset-password`, payload)
+          .then(res => {
+            resolve(res.data.msg)
+          })
+          .catch(err => {
+            reject(err.response.data.msg)
+          })
+      })
     }
   },
   getters: {

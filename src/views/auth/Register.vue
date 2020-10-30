@@ -84,6 +84,7 @@ export default {
             showConfirmButton: false,
             timer: 1500
           })
+          this.$router.push('/')
         })
         .catch((err) => {
           this.$swal.fire({
@@ -101,7 +102,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@sweetalert2/theme-dark/dark.min.css';
+@import '~@sweetalert2/theme-dark/dark.css';
 
 .hmm {
   background-image: url(../../assets/background2.png);

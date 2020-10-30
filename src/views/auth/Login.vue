@@ -29,7 +29,8 @@
             <p class="forgot">Forgot Password?</p>
           </router-link>
         </li>
-        <button class="btn-login" @click="submit">LOGIN</button>
+        <button class="btn-login" @click="submitLogin">LOGIN</button>
+
         <li>
           <router-link tag="li" to="/register">
             <p class="create">Create Account</p>
@@ -54,13 +55,13 @@ export default {
   },
   methods: {
     ...mapActions(['loginUser']),
-    submit() {
+    submitLogin() {
       this.loginUser(this.form)
         .then((res) => {
           this.$swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Noicee',
+            title: 'Cool',
             text: res,
             showConfirmButton: false,
             timer: 1500
@@ -83,7 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@sweetalert2/theme-dark/dark.min.css';
+@import '~@sweetalert2/theme-dark/dark.css';
 
 .title {
   text-align: left;
@@ -178,10 +179,10 @@ li {
 
 @media (max-width: 700px) {
   .hmm {
-    height: 655px;
+    height: 740px;
   }
   .login {
-    padding-top: 150px;
+    padding-top: 200px;
     margin: auto;
     width: 100%;
   }

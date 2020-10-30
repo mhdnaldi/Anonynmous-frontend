@@ -9,27 +9,60 @@
           <input
             v-focus
             type="text"
+            v-model="form.user_email"
             class="form"
             id="username"
             placeholder="Enter email"
           />
         </form>
-        <button class="btn-login">SUBMIT</button>
+        <button class="btn-login" @click="forgotPassword">SUBMIT</button>
       </div>
     </b-col>
   </b-container>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      form: {
+        user_email: ''
+      }
+    }
   },
-  methods: {}
+  methods: {
+    ...mapActions(['forgot']),
+    forgotPassword() {
+      this.forgot(this.form)
+        .then((res) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cool',
+            text: res,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+        .catch((err) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Oops..',
+            text: err,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~@sweetalert2/theme-dark/dark.css';
+
 .title {
   text-align: left;
   color: #eee;
@@ -109,10 +142,10 @@ label {
 
 @media (max-width: 700px) {
   .hmm {
-    height: 495px;
+    height: 740px;
   }
   .login {
-    padding-top: 120px;
+    padding-top: 350px;
     margin: auto;
     width: 100%;
   }

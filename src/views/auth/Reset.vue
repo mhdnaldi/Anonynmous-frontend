@@ -10,6 +10,7 @@
             v-focus
             type="text"
             class="form"
+            v-model="form.user_password"
             id="password"
             placeholder="Enter new password"
           />
@@ -17,26 +18,66 @@
           <input
             type="text"
             class="form"
+            v-model="form.confirm_password"
             id="password-confirm"
             placeholder="Confirm password"
           />
         </form>
-        <button class="btn-login">SUBMIT</button>
+        <button class="btn-login" @click="resetPassword">SUBMIT</button>
       </div>
     </b-col>
   </b-container>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      form: {
+        user_password: '',
+        confirm_password: ''
+      }
+    }
   },
-  methods: {}
+  methods: {
+    ...mapActions(['reset']),
+    resetPassword() {
+      const key = this.$route.query.user_key
+      const setData = {
+        user_key: key,
+        user_password: this.form.user_password,
+        confirm_password: this.form.confirm_password
+      }
+      this.reset(setData)
+        .then((res) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cool',
+            text: res,
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          this.$swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Oops..',
+            text: err,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~@sweetalert2/theme-dark/dark.css';
 .title {
   text-align: left;
   color: #eee;
@@ -120,10 +161,10 @@ label {
 
 @media (max-width: 700px) {
   .hmm {
-    height: 495px;
+    height: 740px;
   }
   .login {
-    padding-top: 120px;
+    padding-top: 280px;
     margin: auto;
     width: 100%;
   }
