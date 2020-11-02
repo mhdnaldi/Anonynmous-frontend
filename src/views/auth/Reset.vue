@@ -8,7 +8,7 @@
           <label for="password">PASSWORD</label>
           <input
             v-focus
-            type="text"
+            type="password"
             class="form"
             v-model="form.user_password"
             id="password"
@@ -16,7 +16,7 @@
           />
           <label for="password-confirm">CONFIRM</label>
           <input
-            type="text"
+            type="password"
             class="form"
             v-model="form.confirm_password"
             id="password-confirm"

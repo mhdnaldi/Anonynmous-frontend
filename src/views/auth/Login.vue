@@ -9,7 +9,7 @@
           <label for="username">EMAIL</label>
           <input
             v-focus
-            type="email"
+            type="text"
             v-model="form.user_email"
             class="form"
             id="username"

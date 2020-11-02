@@ -44,7 +44,7 @@ export default {
     logout(context, payload) {
       localStorage.removeItem('token') // REMOVE TOKEN
       context.commit('delUser')
-      // window.sessionStorage.clear() // CLEAR SESSION STORAGE
+      window.sessionStorage.clear() // CLEAR SESSION STORAGE
       router.push('/login')
     },
     inteceptorRequest(context) {
