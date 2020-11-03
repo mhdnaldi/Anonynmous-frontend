@@ -59,7 +59,7 @@ export default {
             showConfirmButton: false,
             timer: 1500
           })
-          this.$router.push('/')
+          this.$router.push('/login')
         })
         .catch((err) => {
           this.$swal.fire({
@@ -125,6 +125,14 @@ label {
 .form::placeholder {
   color: #eee;
   opacity: 1;
+}
+
+.form:-webkit-autofill,
+.form:-webkit-autofill:hover,
+.form:-webkit-autofill:focus,
+.form:-webkit-autofill:active {
+  -webkit-text-fill-color: #eee;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .forgot {

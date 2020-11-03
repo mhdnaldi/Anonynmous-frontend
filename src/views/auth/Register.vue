@@ -27,7 +27,7 @@
             class="form"
             v-model="form.user_phone"
             id="phone"
-            placeholder="Enter phone (optional)"
+            placeholder="Enter phone number"
           />
           <label for="password">PASSWORD</label>
           <input
@@ -82,9 +82,11 @@ export default {
             title: 'Noicee',
             text: res,
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000
           })
-          this.$router.push('/')
+          setTimeout(() => {
+            this.$router.push('/login')
+          }, 3000)
         })
         .catch((err) => {
           this.$swal.fire({
@@ -152,6 +154,13 @@ label {
 
 .form:focus {
   outline: none;
+}
+.form:-webkit-autofill,
+.form:-webkit-autofill:hover,
+.form:-webkit-autofill:focus,
+.form:-webkit-autofill:active {
+  -webkit-text-fill-color: #eee;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .forgot {

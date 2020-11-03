@@ -41,23 +41,24 @@ export default {
           })
       })
     },
-    logout(context, payload) {
-      localStorage.removeItem('token') // REMOVE TOKEN
-      context.commit('delUser')
-      window.sessionStorage.clear() // CLEAR SESSION STORAGE
-      router.push('/login')
-    },
-    inteceptorRequest(context) {
-      console.log('Inteceptor works')
+    interceptorRequest(context) {
+      console.log('interceptor works!')
       axios.interceptors.request.use(
         function(config) {
-          config.headers.Authorization = `Bearer ${context.state.token}`
+          config.headers.authorization = `Bearer ${context.state.token}`
+          // Do something before request is sent
           return config
         },
         function(error) {
           return Promise.reject(error)
         }
       )
+    },
+    logout(context) {
+      localStorage.removeItem('token') // REMOVE TOKEN
+      context.commit('delUser')
+      // window.sessionStorage.clear() // CLEAR SESSION STORAGE
+      router.push('/login')
     },
     interceptorResponse(context) {
       axios.interceptors.response.use(
@@ -106,6 +107,20 @@ export default {
           })
           .catch(err => {
             reject(err.response.data.msg)
+          })
+      })
+    },
+    activate(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(`${process.env.VUE_APP_URL}auth/activate-account`, payload)
+          .then(res => {
+            console.log(res.data)
+            resolve(res.data)
+          })
+          .catch(err => {
+            console.log(err.response)
+            resolve(err.response.data.msg)
           })
       })
     }

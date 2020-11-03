@@ -108,6 +108,14 @@ label {
   opacity: 1;
 }
 
+.form:-webkit-autofill,
+.form:-webkit-autofill:hover,
+.form:-webkit-autofill:focus,
+.form:-webkit-autofill:active {
+  -webkit-text-fill-color: #eee;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .forgot {
   text-align: right;
   color: rgb(109, 109, 109);

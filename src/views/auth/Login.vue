@@ -9,7 +9,7 @@
           <label for="username">EMAIL</label>
           <input
             v-focus
-            type="text"
+            type="email"
             v-model="form.user_email"
             class="form"
             id="username"
@@ -44,7 +44,6 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  name: 'Login',
   data() {
     return {
       form: {
@@ -54,37 +53,68 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['loginUser']),
+    ...mapActions(['loginUser', 'activate']),
     submitLogin() {
-      this.loginUser(this.form)
-        .then((res) => {
-          this.$swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Cool',
-            text: res,
-            showConfirmButton: false,
-            timer: 1500
+      const role = this.$route.query.user_role
+      if (role !== undefined) {
+        const setData = {
+          user_email: this.form.user_email,
+          user_role: 2
+        }
+        this.activate(setData)
+        this.loginUser(this.form)
+          .then((res) => {
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Cool',
+              text: res,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.$router.push('/')
           })
-          this.$router.push('/')
-        })
-        .catch((err) => {
-          this.$swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Oops..',
-            text: err,
-            showConfirmButton: false,
-            timer: 1500
+          .catch((err) => {
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Oops..',
+              text: err,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
-        })
+      } else {
+        this.loginUser(this.form)
+          .then((res) => {
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Cool',
+              text: res,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.$router.push('/')
+          })
+          .catch((err) => {
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Oops..',
+              text: err,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@sweetalert2/theme-dark/dark.css';
+@import '~@sweetalert2/theme-dark/dark.min.css';
 
 .title {
   text-align: left;
@@ -133,6 +163,14 @@ label {
 .form::placeholder {
   color: #eee;
   opacity: 1;
+}
+
+.form:-webkit-autofill,
+.form:-webkit-autofill:hover,
+.form:-webkit-autofill:focus,
+.form:-webkit-autofill:active {
+  -webkit-text-fill-color: #eee;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .forgot {
