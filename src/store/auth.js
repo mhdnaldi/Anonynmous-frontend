@@ -8,6 +8,7 @@ export default {
   mutations: {
     setUser(state, payload) {
       state.user = payload
+      state.token = payload.token
     },
     delUser(state) {
       state.token = null

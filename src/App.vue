@@ -5,8 +5,9 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #2c3e50;
   /* background-image: url(./assets/background2.png);
   width: 100%;
