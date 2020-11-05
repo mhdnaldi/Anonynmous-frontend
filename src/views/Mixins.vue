@@ -2,17 +2,19 @@
   <div class="container-main">
     <div class="main one"><AsideOne /></div>
     <div class="main two">a</div>
-    <div class="main three">a</div>
+    <div class="main three"><AsideThree /></div>
     <div class="main four">a</div>
   </div>
 </template>
 
 <script>
 import AsideOne from '../components/LeftAsideOne'
+import AsideThree from '../components/RightAsideOne'
 import { mapActions } from 'vuex'
 export default {
   components: {
-    AsideOne
+    AsideOne,
+    AsideThree
   },
   data() {
     return {}
@@ -26,7 +28,7 @@ export default {
 <style scoped>
 .container-main {
   display: grid;
-  grid-template-columns: 1fr 3fr 5fr 3fr;
+  grid-template-columns: 0.5fr 3fr 6fr 2.5fr;
   align-items: center;
 }
 
