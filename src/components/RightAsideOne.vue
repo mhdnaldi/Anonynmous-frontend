@@ -17,7 +17,8 @@
         <img src="../assets/icons/user-3.png" alt="" />
         <p>How do you do?</p>
       </div>
-      <div class="me"></div>
+      <div class="me"><p>Great man thanks!</p></div>
+      <div class="me"><p>How about you?</p></div>
     </div>
     <div class="message">
       <div class="input">
@@ -98,6 +99,7 @@
 .chat-room {
   width: 100%;
   height: 530px;
+  overflow-x: hidden;
   background-color: rgb(17, 17, 36);
   position: relative;
 }
@@ -109,21 +111,40 @@
 .friend img {
   width: 35px;
   position: absolute;
-  top: 7px;
+  top: 10px;
   left: 5px;
 }
 
 .friend p {
   display: inline-block;
   margin-left: 50px;
-  margin-top: 10px;
+  margin-top: 13px;
   font-size: 14px;
   color: #fff;
   background-color: rgb(70, 102, 207);
   padding: 12px 10px;
   border-radius: 0 20px 10px 20px;
   grid-template-columns: 40px 450px;
-  max-width: 450px;
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+.me {
+  text-align: right;
+}
+
+.me p {
+  display: inline-block;
+  text-align: center;
+  margin-top: 13px;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: rgb(70, 102, 207);
+  padding: 12px 10px;
+  border-radius: 10px 20px 0px 20px;
+  grid-template-columns: 40px 450px;
+  max-width: 400px;
   word-wrap: break-word;
 }
 /* END CHAT ROOM */
@@ -133,7 +154,8 @@
   width: 100%;
   height: 47px;
   background-color: rgb(17, 17, 36);
-  box-shadow: 0px -6px 10px -2px rgba(0, 0, 0, 0.66);
+  box-shadow: 0px -7px 11px -2px #000000;
+  position: relative;
   display: grid;
   grid-template-columns: 4fr 50px 50px;
 }
