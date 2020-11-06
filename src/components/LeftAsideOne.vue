@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="aside">
     <div class="profile"></div>
     <p>Muhammad Naldi</p>
     <div class="icon">
@@ -16,7 +16,7 @@
 </template>
 
 <style scoped>
-.main {
+.aside {
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -35,6 +35,7 @@ p {
   margin-bottom: 50px;
   padding: 0 20px;
   color: #eee;
+  font-weight: bold;
   text-align: center;
   font-size: 14px;
 }

@@ -15,7 +15,7 @@ const routes = [
     path: '/',
     name: 'Mixins',
     component: Mixins,
-    meta: { requiresAuth: true }
+    meta: { requiresVisitor: true }
   },
   {
     path: '/login',
